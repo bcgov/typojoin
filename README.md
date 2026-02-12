@@ -2,7 +2,7 @@
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
-<img src="man/figures/logo.png" align="right" height="140"/>
+<img src="man/figures/typojoin.png" align="right" height="140"/>
 
 # typojoin
 
