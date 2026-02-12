@@ -29,7 +29,7 @@ fuzzy matching.
 ## What typojoin does not do
 
 - It is not a probabilistic fuzzy join framework  
-- It does not compute similarity scores for exploratory matching  
+- It does not return similarity scores for exploratory matching  
 - It does not attempt multi-column heuristic reconciliation  
 - It is not designed for large Cartesian search problems
 
