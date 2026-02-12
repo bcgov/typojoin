@@ -1,3 +1,4 @@
+
 ---
 output: github_document
 ---
@@ -5,8 +6,6 @@ output: github_document
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 <img src="man/figures/typojoin.png" align="right" height="140"/>
-
-
 
 # typojoin
 
@@ -38,7 +37,34 @@ It is designed for safe, predictable key harmonization — not general fuzzy mat
 
 ---
 
-## Example
+## When You Don’t Need `typojoin`
+
+If discrepancies are purely formatting-related (case, spacing, punctuation),
+you can normalize first and use a standard join:
+
+```{r normalize_only, message=FALSE, warning=FALSE}
+library(dplyr)
+library(tibble)
+library(typojoin)
+
+correct <- tibble(industry = c("Day care", "Construction"))
+wrong   <- tibble(industry = c("Day-care", "Construction"))
+
+correct$key_norm <- clean_normalize(correct$industry)
+wrong$key_norm   <- clean_normalize(wrong$industry)
+
+inner_join(correct, wrong, by = "key_norm")
+```
+
+---
+
+## When You Do Need `typojoin`
+
+If small alphabetical errors are present (e.g., "Daycaer" vs "Daycare"),
+normalization alone is insufficient.
+
+`typo_inner_join()` computes edit distances internally and deterministically
+selects the best match per row:
 
 ```{r example, message=FALSE, warning=FALSE}
 library(typojoin)

@@ -35,7 +35,40 @@ fuzzy matching.
 
 ------------------------------------------------------------------------
 
-## Example
+## When You Don’t Need `typojoin`
+
+If discrepancies are purely formatting-related (case, spacing,
+punctuation), you can normalize first and use a standard join:
+
+``` r
+library(dplyr)
+library(tibble)
+library(typojoin)
+
+correct <- tibble(industry = c("Day care", "Construction"))
+wrong   <- tibble(industry = c("Day-care", "Construction"))
+
+correct$key_norm <- clean_normalize(correct$industry)
+wrong$key_norm   <- clean_normalize(wrong$industry)
+
+inner_join(correct, wrong, by = "key_norm")
+```
+
+    ## # A tibble: 2 × 3
+    ##   industry.x   key_norm     industry.y  
+    ##   <chr>        <chr>        <chr>       
+    ## 1 Day care     day care     Day-care    
+    ## 2 Construction construction Construction
+
+------------------------------------------------------------------------
+
+## When You Do Need `typojoin`
+
+If small alphabetical errors are present (e.g., “Daycaer” vs “Daycare”),
+normalization alone is insufficient.
+
+`typo_inner_join()` computes edit distances internally and
+deterministically selects the best match per row:
 
 ``` r
 library(typojoin)
