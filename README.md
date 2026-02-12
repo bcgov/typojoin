@@ -1,8 +1,6 @@
----
-output: github_document
----
 
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 <img src="man/figures/logo.png" align="right" height="140"/>
 
@@ -13,9 +11,10 @@ Deterministic, typo-tolerant joins for structured keys.
 `typojoin` reconciles data frames that *should already match* except for
 minor formatting differences or small alphabetical typos.
 
-It is designed for safe, predictable key harmonization — not general fuzzy matching.
+It is designed for safe, predictable key harmonization — not general
+fuzzy matching.
 
----
+------------------------------------------------------------------------
 
 ## What typojoin does
 
@@ -23,22 +22,22 @@ It is designed for safe, predictable key harmonization — not general fuzzy mat
 - Performs exact matching first  
 - Resolves remaining keys using string distance  
 - Enforces a single best match per record  
-- Optionally asserts complete reconciliation  
+- Optionally asserts complete reconciliation
 
----
+------------------------------------------------------------------------
 
 ## What typojoin does not do
 
 - It is not a probabilistic fuzzy join framework  
 - It does not compute similarity scores for exploratory matching  
 - It does not attempt multi-column heuristic reconciliation  
-- It is not designed for large Cartesian search problems  
+- It is not designed for large Cartesian search problems
 
----
+------------------------------------------------------------------------
 
 ## Example
 
-```{r example, message=FALSE, warning=FALSE}
+``` r
 library(typojoin)
 library(tibble)
 
@@ -55,7 +54,13 @@ wrong <- tibble(
 typo_inner_join(correct, wrong, "industry")
 ```
 
----
+    ## # A tibble: 2 × 4
+    ##   industry.x   value.x industry.y   value.y
+    ##   <chr>          <dbl> <chr>        <chr>  
+    ## 1 Construction       2 Construction B      
+    ## 2 Daycare            1 Daycaer      A
+
+------------------------------------------------------------------------
 
 ## Why not fuzzyjoin?
 
@@ -66,20 +71,21 @@ typo_inner_join(correct, wrong, "industry")
 - deterministic  
 - single best match resolution  
 - exact-first logic  
-- production-friendly reconciliation  
+- production-friendly reconciliation
 
 If your data should already align except for small human errors,
 `typojoin` provides safer defaults.
 
----
+------------------------------------------------------------------------
 
 ## Installation
 
-```r
+``` r
 install.packages("pak")
 pak::pak("bcgov/typojoin")
 ```
 
----
+------------------------------------------------------------------------
 
-`typojoin` is built for pipelines where key alignment is expected — but humans are involved.
+`typojoin` is built for pipelines where key alignment is expected — but
+humans are involved.
