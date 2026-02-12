@@ -1,6 +1,6 @@
 Package: typojoin
 Title: Deterministic, Typo-Tolerant Joins for Structured Keys
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: 
     person("Richard", "Martin", , "richard.martin@gov.bc.ca", role = c("aut", "cre"))
 Description: Provides a deterministic, typo-tolerant join for data frames
